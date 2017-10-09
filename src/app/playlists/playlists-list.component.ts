@@ -1,29 +1,37 @@
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation, Input, EventEmitter, Output } from '@angular/core';
+import { Playlist } from './playlist';
+
+// <ng-template [ngFor]="let playlist" [ngForOf]="playlists"></ng-template>
 
 @Component({
   selector: 'playlists-list',
   template: `
-    <p>
-      playlists-list Works!
-    </p>
-    <playlist-item></playlist-item>
+    <div class="list-group">
+      <div class="list-group-item" 
+          *ngFor="let playlist of playlists"
+          [class.active]="selected == playlist"
+          (click)="select(playlist)">
+        {{playlist.name}}
+      </div>
+    </div>
   `,
   encapsulation: ViewEncapsulation.Emulated,
-  // styles: [`
-  //   :host-context(playlists){
-  //     color:red !important;
-  //   }
-
-  //   :host(.klasa){
-  //     border:1px solid black;
-  //     display:block;
-  //   }
-  //   :host() ::ng-deep p{
-  //     color: hotpink;
-  //   }
-  // `]
+  styles: []
 })
 export class PlaylistsListComponent implements OnInit {
+  
+  @Input()
+  selected:Playlist
+
+  @Input('playlists')
+  playlists: Playlist[] = []
+
+  @Output('selectedChange')
+  selectedChange = new EventEmitter<Playlist>()
+
+  select(playlist){
+    this.selectedChange.emit(playlist)
+  }
 
   constructor() { }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Playlist } from './playlist';
 
 @Component({
@@ -38,16 +38,16 @@ import { Playlist } from './playlist';
     <button class="btn btn-danger float-right" (click)="reset()">Cancel</button>
   </div>
   `,
+  // inputs:[
+  //   'playlist:playlist'
+  // ],
   styles: []
 })
 export class PlaylistDetailsComponent implements OnInit {
 
-  playlist: Playlist = {
-    id: 123,
-    name: "Angular greatest Hits",
-    favourite: false,
-    color: "#00ff00",
-  }
+
+  @Input()
+  playlist: Playlist
 
   mode = 'show'
 
