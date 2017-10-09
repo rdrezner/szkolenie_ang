@@ -8,10 +8,8 @@ import { Playlist } from './playlist';
   template: `
     <div class="row">
       <div class="col">
-        <playlists-list [playlists]="playlists"
-            [selected]="selected"
-            (selectedChange)="selected = $event"
-        ></playlists-list>
+        <playlists-list [playlists]="playlists" [(selected)]="selected">
+        </playlists-list>
       </div>
       <div class="col">
 
