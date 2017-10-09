@@ -23,18 +23,18 @@ import { Playlist } from './playlist';
   <div>
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" [value]="playlist.name"
-                              (input)="playlist.name = $event.target.value">
+        <input type="text" class="form-control" [ngModel]="playlist.name"
+                              (ngModelChange)="playlist.name = $event">
     </div>
     <div class="form-group">
         <label>Favourite</label>
-        <input type="checkbox" [checked]="playlist.favourite"
-                          (change)="playlist.favourite = $event.target.checked">
+        <input type="checkbox" [ngModel]="playlist.favourite"
+                          (ngModelChange)="playlist.favourite = $event">
     </div>
     <div class="form-group">
         <label>Color</label>
-        <input type="color" [value]="playlist.color"
-                          (change)="playlist.color = $event.target.value">
+        <input type="color" [ngModel]="playlist.color"
+                          (ngModelChange)="playlist.color = $event">
     </div>
     <button class="btn btn-success float-right" (click)="save()">Save</button>
     <button class="btn btn-danger float-right" (click)="reset()">Cancel</button>

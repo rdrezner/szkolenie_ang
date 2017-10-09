@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms'
+
 import { AppComponent } from './app.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { PlaylistsListComponent } from './playlists/playlists-list.component';
@@ -16,7 +18,8 @@ import { PlaylistItemComponent } from './playlists/playlist-item.component';
     PlaylistItemComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
