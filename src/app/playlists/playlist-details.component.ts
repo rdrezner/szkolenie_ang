@@ -4,22 +4,25 @@ import { Playlist } from './playlist';
 @Component({
   selector: 'playlist-details',
   template: `
-  <div [hidden]="mode != 'show'">
-    <div class="form-group">
-        <label>Name: </label>
-        <div class="form-control-static"> {{playlist.name}} </div>
+
+  <ng-template [ngIf]="mode == 'show'">
+    <div>
+      <div class="form-group">
+          <label>Name: </label>
+          <div class="form-control-static"> {{playlist.name}} </div>
+      </div>
+      <div class="form-group">
+          <label>Favourite: </label>
+          <div class="form-control-static"> {{ playlist.favourite? 'Favouite' : 'Nope' }} </div>
+      </div>
+      <div class="form-group">
+          <label>Color: </label>
+          <div class="form-control-static" 
+            [style.backgroundColor]="playlist.color"> {{ playlist.color }} </div>
+      </div>
+      <button class="btn btn-success float-right" (click)="edit()">Edit</button>
     </div>
-    <div class="form-group">
-        <label>Favourite: </label>
-        <div class="form-control-static"> {{ playlist.favourite? 'Favouite' : 'Nope' }} </div>
-    </div>
-    <div class="form-group">
-        <label>Color: </label>
-        <div class="form-control-static" 
-          [style.backgroundColor]="playlist.color"> {{ playlist.color }} </div>
-    </div>
-    <button class="btn btn-success float-right" (click)="edit()">Edit</button>
-  </div>
+  </ng-template>
 
   <div [hidden]="mode != 'edit'">
     <div class="form-group">
