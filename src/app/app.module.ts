@@ -8,6 +8,7 @@ import { PlaylistsComponent } from './playlists/playlists.component';
 import { PlaylistsListComponent } from './playlists/playlists-list.component';
 import { PlaylistDetailsComponent } from './playlists/playlist-details.component';
 import { PlaylistItemComponent } from './playlists/playlist-item.component';
+import { ModalComponent } from './playlists/modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PlaylistItemComponent } from './playlists/playlist-item.component';
     PlaylistsComponent,
     PlaylistsListComponent,
     PlaylistDetailsComponent,
-    PlaylistItemComponent
+    PlaylistItemComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

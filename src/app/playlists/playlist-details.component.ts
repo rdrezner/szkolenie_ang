@@ -4,24 +4,26 @@ import { Playlist } from './playlist';
 @Component({
   selector: 'playlist-details',
   template: `
-  <div *ngIf="mode == 'show'">
+  <modal *ngIf="mode == 'show'" [title]="playlist.name">
     <div class="form-group">
-        <label>Name: </label>
-        <div class="form-control-static"> {{playlist.name}} </div>
+      <label>Name: </label>
+      <div class="form-control-static"> {{playlist.name}} </div>
     </div>
     <div class="form-group">
-        <label>Favourite: </label>
-        <div class="form-control-static"> {{ playlist.favourite? 'Favouite' : 'Nope' }} </div>
+      <label>Favourite: </label>
+      <div class="form-control-static"> {{ playlist.favourite? 'Favouite' : 'Nope' }} </div>
     </div>
     <div class="form-group">
-        <label>Color: </label>
-        <div class="form-control-static" 
-          [style.backgroundColor]="playlist.color"> {{ playlist.color }} </div>
+      <label>Color: </label>
+      <div class="form-control-static" 
+        [style.backgroundColor]="playlist.color"> {{ playlist.color }} </div>
     </div>
-    <button class="btn btn-success float-right" (click)="edit()">Edit</button>
-  </div>
+    <footer>
+      <button class="btn btn-success float-right" (click)="edit()">Edit</button>  
+    </footer> 
+  </modal>
 
-  <div *ngIf="mode == 'edit'">
+  <modal *ngIf="mode == 'edit'"  [title]="'Edit ' + playlist.name">
     <div class="form-group">
         <label>Name</label>
         <input type="text" class="form-control" [(ngModel)]="playlist.name">
@@ -34,9 +36,11 @@ import { Playlist } from './playlist';
         <label>Color</label>
         <input type="color" [(ngModel)]="playlist.color">
     </div>
-    <button class="btn btn-success float-right" (click)="save()">Save</button>
-    <button class="btn btn-danger float-right" (click)="reset()">Cancel</button>
-  </div>
+    <footer>
+      <button class="btn btn-success float-right" (click)="save()">Save</button>
+      <button class="btn btn-danger float-right" (click)="reset()">Cancel</button>
+    </footer> 
+  </modal>
   `,
   // inputs:[
   //   'playlist:playlist'
