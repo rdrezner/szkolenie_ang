@@ -8,20 +8,20 @@ import { Component, OnInit,ViewEncapsulation } from '@angular/core';
     </p>
     <playlist-item></playlist-item>
   `,
-  // encapsulation: ViewEncapsulation.Emulated,
-  styles: [`
-    :host-context(playlists){
-      color:red !important;
-    }
+  encapsulation: ViewEncapsulation.Emulated,
+  // styles: [`
+  //   :host-context(playlists){
+  //     color:red !important;
+  //   }
 
-    :host(.klasa){
-      border:1px solid black;
-      display:block;
-    }
-    :host() ::ng-deep p{
-      color: hotpink;
-    }
-  `]
+  //   :host(.klasa){
+  //     border:1px solid black;
+  //     display:block;
+  //   }
+  //   :host() ::ng-deep p{
+  //     color: hotpink;
+  //   }
+  // `]
 })
 export class PlaylistsListComponent implements OnInit {
 

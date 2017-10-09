@@ -3,10 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'playlists',
   template: `
-    <p>
-      playlists Works!
-    </p>
-    <playlists-list class="klasa"></playlists-list>
+    <div class="row">
+      <div class="col">
+        <playlists-list></playlists-list>
+      </div>
+      <div class="col">
+        <playlist-details></playlist-details>
+      </div>
+    </div>    
   `,
   styles: []
 })
