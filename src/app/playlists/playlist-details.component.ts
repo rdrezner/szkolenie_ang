@@ -15,12 +15,12 @@ import { Playlist } from './playlist';
     </div>
     <div class="form-group">
       <label>Color: </label>
-      <div class="form-control-static" 
+      <div class="form-control-static"
         [style.backgroundColor]="playlist.color"> {{ playlist.color }} </div>
     </div>
     <footer>
-      <button class="btn btn-success float-right" (click)="edit()">Edit</button>  
-    </footer> 
+      <button class="btn btn-success float-right" (click)="edit()">Edit</button>
+    </footer>
   </modal>
 
   <modal *ngIf="mode == 'edit'"  [title]="'Edit ' + playlist.name">
@@ -39,32 +39,29 @@ import { Playlist } from './playlist';
     <footer>
       <button class="btn btn-success float-right" (click)="save()">Save</button>
       <button class="btn btn-danger float-right" (click)="reset()">Cancel</button>
-    </footer> 
+    </footer>
   </modal>
   `,
-  // inputs:[
-  //   'playlist:playlist'
-  // ],
   styles: []
 })
 export class PlaylistDetailsComponent implements OnInit {
 
 
   @Input()
-  playlist: Playlist
+  playlist: Playlist;
 
-  mode = 'show'
+  mode = 'show';
 
   edit() {
-    this.mode = 'edit'
+    this.mode = 'edit';
   }
 
   save() {
-    console.log('save')
+    console.log('save');
   }
 
   reset() {
-    this.mode = 'show'
+    this.mode = 'show';
   }
 
   constructor() { }

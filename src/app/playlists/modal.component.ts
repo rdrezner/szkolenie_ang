@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
         <ng-content></ng-content>
     </div>
     <div class="card-footer">
-      <ng-content select="footer, .footer"></ng-content>      
+      <ng-content select="footer, .footer"></ng-content>
     </div>
    </div>
   `,
@@ -18,7 +18,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   @Input()
-  title
+  title: string;
 
   constructor() { }
 

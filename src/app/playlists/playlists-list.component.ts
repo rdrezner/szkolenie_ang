@@ -1,13 +1,11 @@
-import { Component, OnInit,ViewEncapsulation, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Playlist } from './playlist';
-
-// <ng-template [ngFor]="let playlist" [ngForOf]="playlists"></ng-template>
 
 @Component({
   selector: 'playlists-list',
   template: `
     <div class="list-group">
-      <div class="list-group-item" 
+      <div class="list-group-item"
           *ngFor="let playlist of playlists"
           [class.active]="selected == playlist"
           (click)="select(playlist)">
@@ -15,22 +13,21 @@ import { Playlist } from './playlist';
       </div>
     </div>
   `,
-  encapsulation: ViewEncapsulation.Emulated,
   styles: []
 })
 export class PlaylistsListComponent implements OnInit {
-  
+
   @Input()
-  selected:Playlist
+  selected: Playlist;
 
   @Input('playlists')
-  playlists: Playlist[] = []
+  playlists: Playlist[] = [];
 
   @Output('selectedChange')
-  selectedChange = new EventEmitter<Playlist>()
+  selectedChange = new EventEmitter<Playlist>();
 
-  select(playlist){
-    this.selectedChange.emit(playlist)
+  select(playlist) {
+    this.selectedChange.emit(playlist);
   }
 
   constructor() { }
