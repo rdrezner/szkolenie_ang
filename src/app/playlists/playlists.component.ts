@@ -13,9 +13,15 @@ import { Playlist } from './playlist';
       </div>
       <div class="col">
 
-      <playlist-details *ngIf="selected; else noSelected" [playlist]="selected"></playlist-details>
+      <ng-container *ngIf="selected; then detailsRef; else noSelectedRef">
+      </ng-container>
+
+
+      <ng-template #detailsRef>
+        <playlist-details [playlist]="selected"></playlist-details>
+      </ng-template>
       
-      <ng-template #noSelected>Please select playlist</ng-template>
+      <ng-template #noSelectedRef>Please select playlist</ng-template>
       
       </div>
     </div>    
