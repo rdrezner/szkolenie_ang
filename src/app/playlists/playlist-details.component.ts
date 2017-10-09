@@ -4,27 +4,24 @@ import { Playlist } from './playlist';
 @Component({
   selector: 'playlist-details',
   template: `
-
-  <ng-template [ngIf]="mode == 'show'">
-    <div>
-      <div class="form-group">
-          <label>Name: </label>
-          <div class="form-control-static"> {{playlist.name}} </div>
-      </div>
-      <div class="form-group">
-          <label>Favourite: </label>
-          <div class="form-control-static"> {{ playlist.favourite? 'Favouite' : 'Nope' }} </div>
-      </div>
-      <div class="form-group">
-          <label>Color: </label>
-          <div class="form-control-static" 
-            [style.backgroundColor]="playlist.color"> {{ playlist.color }} </div>
-      </div>
-      <button class="btn btn-success float-right" (click)="edit()">Edit</button>
+  <div *ngIf="mode == 'show'">
+    <div class="form-group">
+        <label>Name: </label>
+        <div class="form-control-static"> {{playlist.name}} </div>
     </div>
-  </ng-template>
+    <div class="form-group">
+        <label>Favourite: </label>
+        <div class="form-control-static"> {{ playlist.favourite? 'Favouite' : 'Nope' }} </div>
+    </div>
+    <div class="form-group">
+        <label>Color: </label>
+        <div class="form-control-static" 
+          [style.backgroundColor]="playlist.color"> {{ playlist.color }} </div>
+    </div>
+    <button class="btn btn-success float-right" (click)="edit()">Edit</button>
+  </div>
 
-  <div [hidden]="mode != 'edit'">
+  <div *ngIf="mode == 'edit'">
     <div class="form-group">
         <label>Name</label>
         <input type="text" class="form-control" [(ngModel)]="playlist.name">
