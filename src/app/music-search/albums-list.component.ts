@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from './intefaces';
+import { MusicService } from './music.service';
 
 @Component({
   selector: 'albums-list',
@@ -19,40 +20,19 @@ import { Album } from './intefaces';
 })
 export class AlbumsListComponent implements OnInit {
 
-  albums:Album[] = [
-    {
-      id: "123",
-      name: "Album",
-      artists: [],
-      images: [
-        {
-          height: 200,
-          width: 200,
-          url: "http://simpleicon.com/wp-content/uploads/flash.png"
-        }
-      ]
-    },
-    {
-      id: "124",
-      name: "Album 2",
-      artists: [],
-      images: [
-        {
-          height: 200,
-          width: 200,
-          url: "http://simpleicon.com/wp-content/uploads/flash.png"
-        }
-      ]
-    }
-  ];
+  albums:Album[];
 
   myTrack(index, item) {
     return item.id;
   }
 
-  constructor() { }
+  constructor(private service:MusicService) { }
 
   ngOnInit() {
+    this.service.getAlbums().subscribe(response => {
+      let data = response.json();
+      this.albums = <Album[]>(data.albums.items);
+    });
   }
 
 }

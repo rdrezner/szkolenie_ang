@@ -12,13 +12,13 @@ export class AuthService {
     if(!token) {
       let match = window.location.hash.match(/#access_token=(.*?)&/);
       token = match && match[1];
-      localStorage.setItem('token', token);
     }
 
     if(!token) {
       this.authorize();
     }
     else {
+      localStorage.setItem('token', token);
       return token;
     }
   }

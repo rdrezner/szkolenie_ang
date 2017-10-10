@@ -13,6 +13,8 @@ import { HighlightDirective } from './playlists/highlight.directive';
 import { UnlessDirective } from './playlists/unless.directive';
 import { MusicSearchModule } from './music-search/music-search.module';
 import { AuthService } from './auth/auth.service';
+import { MusicService } from './music-search/music.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { AuthService } from './auth/auth.service';
   imports: [
     BrowserModule,
     FormsModule,
-    MusicSearchModule
+    MusicSearchModule,
+    HttpModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    MusicService
   ],
   bootstrap: [AppComponent]
 })
@@ -39,5 +43,7 @@ export class AppModule {
   constructor(
     private app: ApplicationRef,
     private auth: AuthService
-  ) {}
+  ) {
+    this.auth.getToken();
+  }
 }
