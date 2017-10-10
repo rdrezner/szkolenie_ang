@@ -4,6 +4,7 @@ import { Album } from './intefaces';
 import { AuthService } from '../auth/auth.service';
 
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class MusicService {
@@ -23,6 +24,9 @@ export class MusicService {
     }).map(response => {
       let data = response.json();
       return <Album[]>(data.albums.items);
-    })
+    }).catch(err => {
+      this.auth.authorize();
+      return [];
+    });
   }
 }
