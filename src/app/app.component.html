@@ -5,9 +5,8 @@
 
   <button (click)="hide = !hide">Toggle {{hide}}</button>
 
-  <div *unless="hide; let ala">
-      {{ala}}
-    <playlists></playlists>
+  <div *unless="hide">
+    <music-search></music-search>
   </div>
 </div>
 

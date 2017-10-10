@@ -11,6 +11,7 @@ import { PlaylistItemComponent } from './playlists/playlist-item.component';
 import { ModalComponent } from './playlists/modal.component';
 import { HighlightDirective } from './playlists/highlight.directive';
 import { UnlessDirective } from './playlists/unless.directive';
+import { MusicSearchModule } from './music-search/music-search.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UnlessDirective } from './playlists/unless.directive';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    MusicSearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
