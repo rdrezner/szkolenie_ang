@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Album } from './intefaces';
 
 @Component({
   selector: 'albums-list',
   template: `
   <div class="card-group">
-    <div album-item class="card" 
-      *ngFor="let album of albums">
-    </div>
+    <album-item [album]="album" class="card" 
+      *ngFor="let album of albums; trackBy myTrack">
+    </album-item>
   </div>
   `,
   styles: [`
@@ -18,7 +19,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumsListComponent implements OnInit {
 
-  albums = [1,2,3,4,5,6,7,8];
+  albums:Album[] = [
+    {
+      id: "123",
+      name: "Album",
+      artists: [],
+      images: [
+        {
+          height: 200,
+          width: 200,
+          url: "http://simpleicon.com/wp-content/uploads/flash.png"
+        }
+      ]
+    },
+    {
+      id: "124",
+      name: "Album 2",
+      artists: [],
+      images: [
+        {
+          height: 200,
+          width: 200,
+          url: "http://simpleicon.com/wp-content/uploads/flash.png"
+        }
+      ]
+    }
+  ];
+
+  myTrack(index, item) {
+    return item.id;
+  }
 
   constructor() { }
 

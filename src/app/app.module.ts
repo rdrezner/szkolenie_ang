@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ApplicationRef } from '@angular/core';
 
 import { FormsModule } from '@angular/forms'
 
@@ -12,6 +12,7 @@ import { ModalComponent } from './playlists/modal.component';
 import { HighlightDirective } from './playlists/highlight.directive';
 import { UnlessDirective } from './playlists/unless.directive';
 import { MusicSearchModule } from './music-search/music-search.module';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,14 @@ import { MusicSearchModule } from './music-search/music-search.module';
     FormsModule,
     MusicSearchModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(
+    private app: ApplicationRef,
+    private auth: AuthService
+  ) {}
+}

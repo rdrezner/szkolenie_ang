@@ -24,8 +24,7 @@ export class UnlessDirective {
     }
   }
 
-  constructor(private tpl:TemplateRef<any>, private vcr:ViewContainerRef) { 
-    console.log("unless");
+  constructor(private tpl:TemplateRef<any>, private vcr:ViewContainerRef) {
   }
 
 }

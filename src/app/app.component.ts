@@ -10,13 +10,7 @@ export class AppComponent {
 
   hide = false;
 
-  // counter = 0
-
   constructor(){
-
-    // setInterval(()=>{
-    //     this.counter++
-    // },500)
 
   }
 
