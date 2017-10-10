@@ -8,12 +8,19 @@ import { Playlist } from './playlist';
       <div class="list-group-item"
           *ngFor="let playlist of playlists"
           [class.active]="selected == playlist"
-          (click)="select(playlist)">
+          (click)="select(playlist)"
+          (mouseenter)="hover = playlist"
+          (mouseleave)="hover = false"
+          [style.borderLeftColor]="(hover == playlist ? playlist.color : 'inherit')">
         {{playlist.name}}
       </div>
     </div>
   `,
-  styles: []
+  styles: [`
+    .list-group-item {
+      border-left-width: 15px;
+    }
+  `]
 })
 export class PlaylistsListComponent implements OnInit {
 
@@ -25,6 +32,8 @@ export class PlaylistsListComponent implements OnInit {
 
   @Output('selectedChange')
   selectedChange = new EventEmitter<Playlist>();
+
+  hover;
 
   select(playlist) {
     this.selectedChange.emit(playlist);
