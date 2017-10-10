@@ -3,6 +3,8 @@ import { Http, Headers } from '@angular/http';
 import { Album } from './intefaces';
 import { AuthService } from '../auth/auth.service';
 
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class MusicService {
 
@@ -18,6 +20,9 @@ export class MusicService {
       headers: new Headers({
         'Authorization': 'Bearer ' + this.auth.getToken()
       })
-    });
+    }).map(response => {
+      let data = response.json();
+      return <Album[]>(data.albums.items);
+    })
   }
 }

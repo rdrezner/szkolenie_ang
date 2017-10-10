@@ -29,10 +29,10 @@ export class AlbumsListComponent implements OnInit {
   constructor(private service:MusicService) { }
 
   ngOnInit() {
-    this.service.getAlbums().subscribe(response => {
-      let data = response.json();
-      this.albums = <Album[]>(data.albums.items);
-    });
+    this.service.getAlbums().subscribe(
+      albums => this.albums = albums,
+      err => console.log(err)
+    );
   }
 
 }
