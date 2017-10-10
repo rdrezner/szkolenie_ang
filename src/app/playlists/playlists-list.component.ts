@@ -7,11 +7,9 @@ import { Playlist } from './playlist';
     <div class="list-group">
       <div class="list-group-item"
           *ngFor="let playlist of playlists"
+          [highlight]="playlist.color"
           [class.active]="selected == playlist"
-          (click)="select(playlist)"
-          (mouseenter)="hover = playlist"
-          (mouseleave)="hover = false"
-          [style.borderLeftColor]="(hover == playlist ? playlist.color : 'inherit')">
+          (click)="select(playlist)">
         {{playlist.name}}
       </div>
     </div>

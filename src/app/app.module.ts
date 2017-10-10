@@ -9,6 +9,7 @@ import { PlaylistsListComponent } from './playlists/playlists-list.component';
 import { PlaylistDetailsComponent } from './playlists/playlist-details.component';
 import { PlaylistItemComponent } from './playlists/playlist-item.component';
 import { ModalComponent } from './playlists/modal.component';
+import { HighlightDirective } from './playlists/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ModalComponent } from './playlists/modal.component';
     PlaylistsListComponent,
     PlaylistDetailsComponent,
     PlaylistItemComponent,
-    ModalComponent
+    ModalComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
