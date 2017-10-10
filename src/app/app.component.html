@@ -3,6 +3,11 @@
     Welcome to {{title}}!
   </h1>
 
-  <playlists></playlists>
+  <button (click)="hide = !hide">Toggle {{hide}}</button>
+
+  <div *unless="hide; let ala">
+      {{ala}}
+    <playlists></playlists>
+  </div>
 </div>
 

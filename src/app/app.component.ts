@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Placki';
 
+  hide = false;
+
   // counter = 0
 
   constructor(){
