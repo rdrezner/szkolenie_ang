@@ -15,6 +15,7 @@ import { MusicSearchModule } from './music-search/music-search.module';
 import { AuthService } from './auth/auth.service';
 import { MusicService } from './music-search/music.service';
 import { HttpModule } from '@angular/http';
+import { PlaylistsService } from './playlists/playlists.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpModule } from '@angular/http';
   ],
   providers: [
     AuthService,
-    MusicService
+    MusicService,
+    PlaylistsService
   ],
   bootstrap: [AppComponent]
 })
