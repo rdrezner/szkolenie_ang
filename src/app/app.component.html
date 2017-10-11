@@ -6,7 +6,7 @@
   <button (click)="hide = !hide">Toggle {{hide}}</button>
 
   <div *unless="hide">
-    <playlists></playlists>
+    <router-outlet></router-outlet>
   </div>
 </div>
 

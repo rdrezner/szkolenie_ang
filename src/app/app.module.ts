@@ -16,6 +16,9 @@ import { AuthService } from './auth/auth.service';
 import { MusicService } from './music-search/music.service';
 import { HttpModule } from '@angular/http';
 import { PlaylistsService } from './playlists/playlists.service';
+import { RoutingModule } from './app-routing';
+import { PlaylistContainerComponent } from './playlists/playlist-container.component';
+import { TestingComponent } from './testing.component';
 
 @NgModule({
   declarations: [
@@ -26,17 +29,19 @@ import { PlaylistsService } from './playlists/playlists.service';
     PlaylistItemComponent,
     ModalComponent,
     HighlightDirective,
-    UnlessDirective
+    UnlessDirective,
+    PlaylistContainerComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    MusicSearchModule,
-    HttpModule
+    HttpModule,
+    RoutingModule,
+    MusicSearchModule
   ],
   providers: [
     AuthService,
-    MusicService,
     PlaylistsService
   ],
   bootstrap: [AppComponent]

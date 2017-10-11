@@ -10,8 +10,8 @@ import { PlaylistsService } from './playlists.service';
         <playlists-list [playlists]="playlists$ | async" [(selected)]="selected">
         </playlists-list>
       </div>
-      <div class="col">
-        <playlist-details *ngIf="selected" [playlist]="selected"></playlist-details>
+      <div class="col" *ngIf="selected">
+        <router-outlet></router-outlet>
       </div>
     </div>
   `,

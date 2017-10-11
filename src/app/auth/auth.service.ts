@@ -10,7 +10,6 @@ export class AuthService {
 
   getToken() {
     let token = JSON.parse(localStorage.getItem('token'));
-
     if(!token) {
       let match = window.location.hash.match(/#access_token=(.*?)&/);
       token = match && match[1];

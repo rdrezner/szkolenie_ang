@@ -5,11 +5,14 @@ import { MusicSearchComponent } from './music-search.component';
 import { SearchFormComponent } from './search-form.component';
 import { AlbumsListComponent } from './albums-list.component';
 import { AlbumItemComponent } from './album-item.component';
+import { MusicService } from './music.service';
+import { MusicRoutingModule } from './music-search.routing';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MusicRoutingModule
   ],
   declarations: [
     MusicSearchComponent, 
@@ -19,6 +22,9 @@ import { AlbumItemComponent } from './album-item.component';
   ],
   exports: [
     MusicSearchComponent
+  ],
+  providers: [
+    MusicService
   ]
 })
 export class MusicSearchModule { }

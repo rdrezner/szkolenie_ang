@@ -27,7 +27,7 @@ export class MusicService {
       return <Album[]>(data.albums.items);
     })
     .catch(err => {
-      this.auth.authorize();
+      //this.auth.authorize();
       return [];
     });
 
