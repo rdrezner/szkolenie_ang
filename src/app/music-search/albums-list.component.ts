@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Album } from './intefaces';
 import { MusicService } from './music.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
   template: `
   <div class="card-group">
     <album-item [album]="album" class="card" 
-      *ngFor="let album of albums; trackBy myTrack">
+      *ngFor="let album of (albums$ | async); trackBy myTrack">
     </album-item>
   </div>
   `,
@@ -19,27 +19,17 @@ import { Subscription } from 'rxjs/Subscription';
     }
   `]
 })
-export class AlbumsListComponent implements OnInit, OnDestroy {
+export class AlbumsListComponent implements OnInit {
   
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  albums$;
+  
+  constructor(private service:MusicService) { }
+  
+  ngOnInit() {
+    this.albums$ = this.service.getAlbums();
   }
-
-  albums:Album[];
-
+  
   myTrack(index, item) {
     return item.id;
   }
-
-  constructor(private service:MusicService) { }
-
-  subscription: Subscription;
-
-  ngOnInit() {
-    this.subscription = this.service.getAlbums().subscribe(
-      albums => this.albums = albums,
-      err => console.log(err)
-    );
-  }
-
 }

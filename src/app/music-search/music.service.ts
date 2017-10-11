@@ -21,19 +21,16 @@ export class MusicService {
   search(query) {
     let url = `https://api.spotify.com/v1/search?type=album&q=${query}`;
     
-    return this.http.get(url, {
-      headers: new Headers({
-        'Authorization': 'Bearer ' + this.auth.getToken()
-      })
-    }).map(response => {
-      let data = response.json();
-      return <Album[]>(data.albums.items);
-    }).catch(err => {
-      this.auth.authorize();
-      return [];
-    }).subscribe(albums => {
-      this.albums$.next(albums);
-    });
+    return this.http.get(url)
+      .map(response => {
+        let data = response.json();
+        return <Album[]>(data.albums.items);
+      }).catch(err => {
+        this.auth.authorize();
+        return [];
+      }).subscribe(albums => {
+        this.albums$.next(albums);
+      });
   }
 
   getAlbums() {

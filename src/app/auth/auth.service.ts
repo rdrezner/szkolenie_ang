@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { RequestOptions } from '@angular/http';
 
 @Injectable()
 export class AuthService {
 
-  constructor() {
+  constructor(private requestOptions:RequestOptions) {
+    this.requestOptions.headers.append('Authorization','Bearer ' + this.getToken());
   }
 
   getToken() {
