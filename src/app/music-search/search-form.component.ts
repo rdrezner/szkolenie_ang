@@ -35,8 +35,6 @@ export class SearchFormComponent implements OnInit {
       .get('query')
       .valueChanges
       .debounceTime(400)
-      .filter( ({length}) => length >= 3 )
-      .distinctUntilChanged()
       .subscribe(query => {
         this.search(query);
       })
