@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Album } from './intefaces';
 import { MusicService } from './music.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'albums-list',
@@ -18,7 +19,11 @@ import { MusicService } from './music.service';
     }
   `]
 })
-export class AlbumsListComponent implements OnInit {
+export class AlbumsListComponent implements OnInit, OnDestroy {
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   albums:Album[];
 
@@ -28,8 +33,10 @@ export class AlbumsListComponent implements OnInit {
 
   constructor(private service:MusicService) { }
 
+  subscription: Subscription;
+
   ngOnInit() {
-    this.service.getAlbums().subscribe(
+    this.subscription = this.service.getAlbums().subscribe(
       albums => this.albums = albums,
       err => console.log(err)
     );
