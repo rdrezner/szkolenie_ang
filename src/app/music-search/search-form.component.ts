@@ -4,6 +4,7 @@ import { FormGroup, FormGroupDirective, AbstractControl, FormControl, FormContro
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
+import { MusicService } from './music.service';
 
 @Component({
   selector: 'search-form',
@@ -25,7 +26,7 @@ export class SearchFormComponent implements OnInit {
 
   queryForm:FormGroup;
 
-  constructor(private builder:FormBuilder) { 
+  constructor(private builder:FormBuilder, private service:MusicService) { 
     this.queryForm = builder.group({
       'query': builder.control('Batman')
     });
@@ -43,6 +44,7 @@ export class SearchFormComponent implements OnInit {
 
   search(query) {
     console.log(query);
+    this.service.search(query);
   }
 
   ngOnInit() {

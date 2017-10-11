@@ -5,18 +5,22 @@ import { AuthService } from '../auth/auth.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/startWith';
+
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class MusicService {
 
   constructor(private http: Http, private auth:AuthService) { }
 
-  albums:Album[] = [];
+  albums$ = new BehaviorSubject<Album[]>( [] );
 
-  getAlbums() {
-    let query = 'batman';
+  search(query) {
     let url = `https://api.spotify.com/v1/search?type=album&q=${query}`;
-
+    
     return this.http.get(url, {
       headers: new Headers({
         'Authorization': 'Bearer ' + this.auth.getToken()
@@ -27,6 +31,12 @@ export class MusicService {
     }).catch(err => {
       this.auth.authorize();
       return [];
+    }).subscribe(albums => {
+      this.albums$.next(albums);
     });
+  }
+
+  getAlbums() {
+    return this.albums$.asObservable();
   }
 }
