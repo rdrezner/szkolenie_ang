@@ -7,7 +7,7 @@ export class AuthService {
   }
 
   getToken() {
-    let token = localStorage.getItem('token');
+    let token = JSON.parse(localStorage.getItem('token'));
 
     if(!token) {
       let match = window.location.hash.match(/#access_token=(.*?)&/);
@@ -18,7 +18,7 @@ export class AuthService {
       this.authorize();
     }
     else {
-      localStorage.setItem('token', token);
+      localStorage.setItem('token', JSON.stringify(token));
       return token;
     }
   }

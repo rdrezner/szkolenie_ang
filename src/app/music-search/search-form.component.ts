@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective, AbstractControl, FormControl, FormControlName, FormArray } from '@angular/forms';
+import { FormGroup, FormGroupDirective, AbstractControl, FormControl, FormControlName, FormArray, FormBuilder } from '@angular/forms';
+
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'search-form',
@@ -11,11 +15,7 @@ import { FormGroup, FormGroupDirective, AbstractControl, FormControl, FormContro
         placeholder="Search for..." 
         aria-label="Search for..." 
         #queryRef 
-        formControlName="query"
-        (keyup.enter)="search(queryRef.value)">
-      <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button" (click)="search(queryRef.value)">Go!</button>
-      </span>
+        formControlName="query">
     </div>
   </form>
   `,
@@ -25,10 +25,20 @@ export class SearchFormComponent implements OnInit {
 
   queryForm:FormGroup;
 
-  constructor() { 
-    this.queryForm = new FormGroup({
-      'query': new FormControl('Batman')
+  constructor(private builder:FormBuilder) { 
+    this.queryForm = builder.group({
+      'query': builder.control('Batman')
     });
+
+    this.queryForm
+      .get('query')
+      .valueChanges
+      .debounceTime(400)
+      .filter( ({length}) => length >= 3 )
+      .distinctUntilChanged()
+      .subscribe(query => {
+        this.search(query);
+      })
   }
 
   search(query) {
